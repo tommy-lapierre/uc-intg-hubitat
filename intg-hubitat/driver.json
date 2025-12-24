@@ -1,0 +1,65 @@
+{
+  "driver_id": "uc-intg-hubitat",
+  "version": "0.1.0",
+  "min_core_api": "0.21.0",
+  "name": {
+    "en": "Hubitat Elevation"
+  },
+  "description": {
+    "en": "Integration for Hubitat Elevation smart home hub"
+  },
+  "icon": "custom:hubitat.png",
+  "developer": {
+    "name": "Tommy Lapierre",
+    "url": "https://github.com/tommy-lapierre/uc-intg-hubitat"
+  },
+  "home_page": "https://github.com/tommy-lapierre/uc-intg-hubitat",
+  "release_date": "2024-12-24",
+  "port": 9087,
+  "setup_data_schema": {
+    "title": {
+      "en": "Hubitat configuration"
+    },
+    "settings": [
+      {
+        "id": "hub_address",
+        "label": {
+          "en": "Hub IP Address or Hostname"
+        },
+        "field": {
+          "text": {
+            "placeholder": {
+              "en": "0.0.0.0"
+            }
+          }
+        }
+      },
+      {
+        "id": "maker_api_id",
+        "label": {
+          "en": "Maker API App ID"
+        },
+        "field": {
+          "text": {
+            "placeholder": {
+              "en": "123"
+            }
+          }
+        }
+      },
+      {
+        "id": "access_token",
+        "label": {
+          "en": "Maker API Access Token"
+        },
+        "field": {
+          "text": {
+            "placeholder": {
+              "en": "your-access-token-here"
+            }
+          }
+        }
+      }
+    ]
+  }
+}

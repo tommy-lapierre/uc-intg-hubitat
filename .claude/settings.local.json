@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python -m py_compile:*)",
+      "Bash(python -c \"import sys; sys.path.insert(0, ''intg-hubitat''); import config; print(''config.py imports successfully'')\")",
+      "Bash(python:*)",
+      "Bash(venvScriptspython.exe -m pip install -r requirements.txt)",
+      "Bash(./venv/Scripts/python.exe -m pip install:*)",
+      "Bash(./venv/Scripts/python.exe -c \"import sys; sys.path.insert(0, ''intg-hubitat''); import entities; print(''entities.py imports successfully'')\")",
+      "Bash(./venv/Scripts/python.exe -c \"import sys; sys.path.insert(0, ''intg-hubitat''); import hubitat; print(''hubitat.py imports successfully'')\")",
+      "Bash(./venv/Scripts/python.exe -c \"import sys; sys.path.insert(0, ''intg-hubitat''); import driver; print(''driver.py imports successfully'')\")",
+      "Bash(./venv/Scripts/python.exe:*)",
+      "Bash(ipconfig:*)",
+      "Bash(findstr:*)",
+      "Bash(arp:*)",
+      "Bash(git add:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
