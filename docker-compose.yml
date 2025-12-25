@@ -2,7 +2,12 @@ version: '3.8'
 
 services:
   hubitat-integration:
-    build: .
+    # Use pre-built image from Docker Hub
+    image: mrper/uc-intg-hubitat:latest
+
+    # Uncomment to build from source instead:
+    # build: .
+
     container_name: uc-intg-hubitat
     restart: unless-stopped
     network_mode: host

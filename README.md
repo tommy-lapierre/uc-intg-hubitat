@@ -55,9 +55,37 @@ pip install -r requirements.txt
 python intg-hubitat/driver.py
 ```
 
-### Option 2: Docker
+### Option 2: Docker (Recommended)
 
 Using Docker is the recommended deployment method for production use.
+
+#### Quick Start - Using Pre-built Image from Docker Hub
+
+The easiest way to deploy is using the pre-built image from Docker Hub:
+
+```bash
+docker run -d \
+  --name uc-intg-hubitat \
+  --network host \
+  -v $(pwd)/config:/app/config \
+  --restart unless-stopped \
+  mrper/uc-intg-hubitat:latest
+```
+
+View logs:
+```bash
+docker logs -f uc-intg-hubitat
+```
+
+Stop the integration:
+```bash
+docker stop uc-intg-hubitat
+docker rm uc-intg-hubitat
+```
+
+#### Building from Source
+
+If you prefer to build the image yourself:
 
 1. Clone this repository:
 ```bash
@@ -86,7 +114,7 @@ docker-compose logs -f
 docker-compose down
 ```
 
-**Alternative: Using Docker directly**
+**Alternative: Build and run with Docker directly**
 
 ```bash
 # Build the image
