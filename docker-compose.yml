@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  hubitat-integration:
+    build: .
+    container_name: uc-intg-hubitat
+    restart: unless-stopped
+    network_mode: host
+    environment:
+      # Optional: Override listening interface (default: 0.0.0.0)
+      # UC_INTEGRATION_INTERFACE: 0.0.0.0
+
+      # Optional: Override HTTP port (default: 9087)
+      # UC_INTEGRATION_HTTP_PORT: 9087
+
+      # Optional: Disable mDNS service discovery
+      # UC_DISABLE_MDNS_PUBLISH: "true"
+
+      # Optional: Set logging level (DEBUG, INFO, WARNING, ERROR)
+      # LOG_LEVEL: INFO
+
+    volumes:
+      # Mount config directory to persist configuration
+      - ./config:/app/config
+
+    # Alternative if you don't want to use host network mode:
+    # ports:
+    #   - "9087:9087"
+    # Note: mDNS auto-discovery works best with host network mode

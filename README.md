@@ -55,7 +55,53 @@ pip install -r requirements.txt
 python intg-hubitat/driver.py
 ```
 
-### Option 2: Install as Package (Future)
+### Option 2: Docker
+
+Using Docker is the recommended deployment method for production use.
+
+1. Clone this repository:
+```bash
+git clone https://github.com/tommy-lapierre/uc-intg-hubitat.git
+cd uc-intg-hubitat
+```
+
+2. Build and run with Docker Compose:
+```bash
+docker-compose up -d
+```
+
+The integration will:
+- Run in the background (`-d` flag)
+- Automatically restart if it crashes
+- Use host networking for mDNS auto-discovery
+- Persist configuration in `./config` directory
+
+3. View logs:
+```bash
+docker-compose logs -f
+```
+
+4. Stop the integration:
+```bash
+docker-compose down
+```
+
+**Alternative: Using Docker directly**
+
+```bash
+# Build the image
+docker build -t uc-intg-hubitat .
+
+# Run the container
+docker run -d \
+  --name uc-intg-hubitat \
+  --network host \
+  -v $(pwd)/config:/app/config \
+  --restart unless-stopped \
+  uc-intg-hubitat
+```
+
+### Option 3: Install as Package (Future)
 
 This integration will be available through the Unfolded Circle integration store.
 
