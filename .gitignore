@@ -40,6 +40,9 @@ config.json
 test_hubitat.py
 check_thermostat.py
 
+# Distribution packages
+*.tar.gz
+
 # OS
 .DS_Store
 Thumbs.db

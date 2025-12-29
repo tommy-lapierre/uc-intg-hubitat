@@ -31,7 +31,26 @@ This integration allows you to control your Hubitat Elevation smart home devices
 
 ## Installation
 
-### Option 1: Run from Source
+### Option 1: Local Installation on Remote (Recommended for Remote 3)
+
+For Unfolded Circle Remote 3, you can install the integration package directly on the device:
+
+1. Download the latest release package: `uc-intg-hubitat-0.1.0.tar.gz` from the [GitHub Releases](https://github.com/tommy-lapierre/uc-intg-hubitat/releases) page
+
+2. On your Unfolded Circle Remote:
+   - Go to **Settings** → **Integrations** → **Add Integration**
+   - Select **Upload Custom Integration**
+   - Upload the `uc-intg-hubitat-0.1.0.tar.gz` file
+   - Follow the setup wizard to configure your Hubitat hub
+
+3. Enter your Hubitat credentials:
+   - Hub IP Address (e.g., 192.168.1.100)
+   - Maker API App ID
+   - Access Token
+
+The integration will automatically discover your devices and make them available on the Remote.
+
+### Option 2: Run from Source
 
 1. Clone this repository:
 ```bash
@@ -55,7 +74,7 @@ pip install -r requirements.txt
 python intg-hubitat/driver.py
 ```
 
-### Option 2: Docker (Recommended)
+### Option 3: Docker
 
 Using Docker is the recommended deployment method for production use.
 
@@ -129,7 +148,7 @@ docker run -d \
   uc-intg-hubitat
 ```
 
-### Option 3: Install as Package (Future)
+### Option 4: Integration Store (Future)
 
 This integration will be available through the Unfolded Circle integration store.
 
