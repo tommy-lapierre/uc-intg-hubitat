@@ -418,6 +418,9 @@ async def driver_setup_handler(msg: ucapi.SetupDriver) -> ucapi.SetupAction:
 
 async def main():
     """Initialize and run the integration."""
+    import os
+    import sys
+
     logging.basicConfig(
         level=logging.INFO,
         format="%(asctime)s | %(levelname)s | %(name)s | %(message)s",
@@ -442,7 +445,43 @@ async def main():
         _LOG.info("No configuration found, waiting for setup")
 
     # Initialize the API
-    await api.init("intg-hubitat/driver.json", driver_setup_handler)
+    if getattr(sys, 'frozen', False):
+        # Running as PyInstaller bundle
+        # On UC Remote, the driver runs from /app/driver with cwd=/app
+        # driver.json is one level up from the bin directory
+        _LOG.info(f"PyInstaller bundle detected")
+        _LOG.info(f"  sys.executable: {sys.executable}")
+        _LOG.info(f"  cwd: {os.getcwd()}")
+
+        # Try multiple possible locations for driver.json
+        possible_paths = [
+            "../driver.json",  # Relative to cwd (most likely on UC Remote)
+            os.path.join(os.path.dirname(os.path.dirname(sys.executable)), "driver.json"),  # Relative to executable
+            "driver.json",  # Same directory as cwd
+        ]
+
+        driver_json_path = None
+        for path in possible_paths:
+            abs_path = os.path.abspath(path)
+            _LOG.info(f"  Checking: {path} -> {abs_path}")
+            if os.path.exists(abs_path):
+                driver_json_path = abs_path
+                _LOG.info(f"  Found driver.json at: {driver_json_path}")
+                break
+
+        if not driver_json_path:
+            _LOG.error(f"driver.json not found in any of these locations:")
+            for path in possible_paths:
+                _LOG.error(f"  - {os.path.abspath(path)}")
+            _LOG.error(f"Directory listing of {os.getcwd()}: {os.listdir('.')}")
+            _LOG.error(f"Directory listing of {os.path.dirname(os.getcwd())}: {os.listdir('..')}")
+            raise FileNotFoundError("driver.json not found")
+    else:
+        # Running as normal Python script
+        driver_json_path = "intg-hubitat/driver.json"
+        _LOG.info(f"Running as Python script, using: {driver_json_path}")
+
+    await api.init(driver_json_path, driver_setup_handler)
 
 
 if __name__ == "__main__":

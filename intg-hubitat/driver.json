@@ -1,6 +1,6 @@
 {
   "driver_id": "uc-intg-hubitat",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "min_core_api": "0.21.0",
   "name": {
     "en": "Hubitat Elevation"
@@ -8,7 +8,7 @@
   "description": {
     "en": "Integration for Hubitat Elevation smart home hub"
   },
-  "icon": "custom:hubitat.png",
+  "icon": "uc:integration",
   "developer": {
     "name": "Tommy Lapierre",
     "url": "https://github.com/tommy-lapierre/uc-intg-hubitat"

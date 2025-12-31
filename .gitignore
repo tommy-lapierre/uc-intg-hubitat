@@ -42,6 +42,9 @@ check_thermostat.py
 
 # Distribution packages
 *.tar.gz
+*.sha256
+artifacts/
+*.spec
 
 # OS
 .DS_Store
